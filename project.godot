@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="COM419 project"
+run/main_scene="uid://chil6ypljk1lh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
