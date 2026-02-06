@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chil6ypljk1lh"]
 
 [ext_resource type="Script" uid="uid://cg315sqrkbj4h" path="res://player.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://cyrtfjq7up44n" path="res://icon.svg" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -67,9 +68,14 @@ script = ExtResource("1_ig7tw")
 shape = SubResource("CapsuleShape3D_h2yge")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1312682328]
+visible = false
 mesh = SubResource("CapsuleMesh_1bvp3")
 surface_material_override/0 = SubResource("StandardMaterial3D_lquwl")
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=155468230]
 transform = Transform3D(1, 0, 0, 0, 0.7540909, 0.6567701, 0, -0.6567701, 0.7540909, 0, 22.27877, 26.11221)
 fov = 18.4
+
+[node name="Sprite3D" type="Sprite3D" parent="Player" unique_id=1581043952]
+shaded = true
+texture = ExtResource("2_0xm2m")
