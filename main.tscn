@@ -39,16 +39,13 @@ data = PackedVector3Array(25, 0, 6, -25, 0, 6, 25, 0, -6, -25, 0, 6, -25, 0, -6,
 radial_segments = 8
 rings = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
-albedo_color = Color(0, 0.56709236, 0.85256064, 1)
-
 [node name="Main" type="Node3D" unique_id=1255020925]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1201533964]
 environment = SubResource("Environment_0xm2m")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=96058333]
-transform = Transform3D(-0.9813861, 0.19176854, -0.010291377, -0.028170537, -0.09074135, 0.99547607, 0.18996717, 0.9772363, 0.094454534, 0, 0, 0)
+transform = Transform3D(-0.98138624, 0.19176862, -0.010291393, -0.02817054, -0.09074136, 0.99547607, 0.1899672, 0.97723633, 0.09445455, 0, 2.5217085, 0)
 shadow_enabled = true
 
 [node name="Test Stage" type="MeshInstance3D" parent="." unique_id=2030339401]
@@ -68,14 +65,15 @@ script = ExtResource("1_ig7tw")
 shape = SubResource("CapsuleShape3D_h2yge")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1312682328]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.43973655, 0, 0, 0)
+layers = 2
+cast_shadow = 3
 mesh = SubResource("CapsuleMesh_1bvp3")
-surface_material_override/0 = SubResource("StandardMaterial3D_lquwl")
-
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=155468230]
-transform = Transform3D(1, 0, 0, 0, 0.7540909, 0.6567701, 0, -0.6567701, 0.7540909, 0, 22.27877, 26.11221)
-fov = 18.4
 
 [node name="Sprite3D" type="Sprite3D" parent="Player" unique_id=1581043952]
-shaded = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36488628, 0)
 texture = ExtResource("2_0xm2m")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=155468230]
+transform = Transform3D(1, 0, 0, 0, 0.7540909, 0.6567701, 0, -0.6567701, 0.7540909, 0, 23.27877, 26.11221)
+fov = 18.4
