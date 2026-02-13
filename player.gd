@@ -4,9 +4,19 @@ extends CharacterBody3D
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var terra_sprite_3d: AnimatedSprite3D = $TerraSprite3D
 @onready var mars_sprite_3d: AnimatedSprite3D = $MarsSprite3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
+enum player_state{
+	idle,
+	jump,
+	attack,
+	special
+}
+
+var state = player_state.idle
 
 @export var can_progress = false
 
@@ -61,12 +71,8 @@ func process_swapping():
 	if Input.is_action_just_pressed("in_swap") and is_on_floor():
 		swapped = !swapped
 	if !swapped:
-		if !terra_sprite_3d.visible:
-			terra_sprite_3d.show()
-		if mars_sprite_3d.visible:
-			mars_sprite_3d.hide()
+		if state == player_state.idle:
+			animation_player.play("Terra Idle")
 	else:
-		if terra_sprite_3d.visible:
-			terra_sprite_3d.hide()
-		if !mars_sprite_3d.visible:
-			mars_sprite_3d.show()
+		if state == player_state.idle:
+			animation_player.play("Mars Idle")
