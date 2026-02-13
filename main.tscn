@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://chil6ypljk1lh"]
 
-[ext_resource type="Script" uid="uid://cg315sqrkbj4h" path="res://player.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://cyrtfjq7up44n" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://crvdco1pyowh7" path="res://player.tscn" id="1_ig7tw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -33,21 +32,6 @@ albedo_texture = SubResource("NoiseTexture2D_0xm2m")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ig7tw"]
 data = PackedVector3Array(25, 0, 6, -25, 0, 6, 25, 0, -6, -25, 0, 6, -25, 0, -6, 25, 0, -6)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1bvp3"]
-radial_segments = 8
-rings = 1
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xm2m"]
-data = PackedVector3Array(5.335, 0, 7.5699997, -5.335, 0, 7.5699997, 5.335, 0, -7.5699997, -5.335, 0, 7.5699997, -5.335, 0, -7.5699997, 5.335, 0, -7.5699997)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-size = Vector3(17.07, 1, 34.495)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
-size = Vector3(1, 8.837036, 23.935)
-
 [node name="Main" type="Node3D" unique_id=1255020925]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1201533964]
@@ -66,60 +50,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test Stage/StaticBody3D" unique_id=2102389521]
 shape = SubResource("ConcavePolygonShape3D_ig7tw")
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1000664782]
+[node name="Player" parent="." unique_id=2045977923 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, -13.603105, 1.0000019, 1.9073486e-06)
-collision_layer = 3
-script = ExtResource("1_ig7tw")
-can_progress = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1742752654]
-shape = SubResource("CapsuleShape3D_h2yge")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1312682328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.43973655, 0, 0, 0)
-layers = 2
-cast_shadow = 3
-mesh = SubResource("CapsuleMesh_1bvp3")
-
-[node name="Sprite3D" type="Sprite3D" parent="Player" unique_id=1581043952]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36488628, 0)
-texture = ExtResource("2_0xm2m")
-
-[node name="Camera3D" type="Camera3D" parent="Player" unique_id=155468230]
-transform = Transform3D(1, 0, 0, 0, 0.7540909, 0.6567701, 0, -0.6567701, 0.7540909, -13.603105, 23.278769, 26.112207)
-top_level = true
-fov = 18.4
-
-[node name="ProgWall" type="StaticBody3D" parent="Player/Camera3D" unique_id=1124974092]
-transform = Transform3D(-4.3711378e-08, -1, 0, 0.7535632, -3.29393e-08, -0.6573751, 0.6573751, -2.8734785e-08, 0.7535632, 8.495, -0.405, -34.98)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/ProgWall" unique_id=213726854]
-shape = SubResource("ConcavePolygonShape3D_0xm2m")
-
-[node name="LWall" type="StaticBody3D" parent="Player/Camera3D" unique_id=1564029356]
-transform = Transform3D(-4.371139e-08, 1, 0, -0.7540907, -3.296235e-08, -0.65677, -0.65677, -2.8708328e-08, 0.7540907, -8.494895, -0.4045887, -34.979774)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/LWall" unique_id=1992992679]
-shape = SubResource("ConcavePolygonShape3D_0xm2m")
-
-[node name="TWall" type="StaticBody3D" parent="Player/Camera3D" unique_id=305621819]
-transform = Transform3D(0, -4.3711395e-08, -0.99999994, -0.7540904, -0.6567701, 1.4760024e-08, -0.65677, 0.7540909, -1.6947169e-08, 0.5929594, 3.5061996, -39.470055)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/TWall" unique_id=63345449]
-shape = SubResource("BoxShape3D_0xm2m")
-
-[node name="BWall" type="StaticBody3D" parent="Player/Camera3D" unique_id=524269830]
-transform = Transform3D(0, -4.3711395e-08, -0.99999994, -0.7540903, -0.6567701, 1.4760024e-08, -0.65677, 0.7540909, -1.6947169e-08, 0.5929594, -4.5984364, -30.164465)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/BWall" unique_id=982227037]
-shape = SubResource("BoxShape3D_0xm2m")
-
-[node name="ProgressTrigger" type="Area3D" parent="Player/Camera3D" unique_id=2025209597]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/ProgressTrigger" unique_id=1981099834]
-transform = Transform3D(1, 0, 0, 0, 0.7615378, -0.6481198, 0, 0.6481198, 0.7615378, 9.081261, 4.858189, -34.538692)
-shape = SubResource("BoxShape3D_h2yge")
-
-[connection signal="body_entered" from="Player/Camera3D/ProgressTrigger" to="Player" method="_on_progress_trigger_body_entered"]
