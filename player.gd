@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var prog_wall: StaticBody3D = $Camera3D/ProgWall
 @onready var camera_3d: Camera3D = $Camera3D
+@onready var terra_sprite_3d: AnimatedSprite3D = $TerraSprite3D
+@onready var mars_sprite_3d: AnimatedSprite3D = $MarsSprite3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -17,6 +19,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	process_movement(delta)
 	process_camera()
+	process_swapping()
 	check_progress_wall()
 	move_and_slide()
 
@@ -57,3 +60,13 @@ func process_camera():
 func process_swapping():
 	if Input.is_action_just_pressed("in_swap"):
 		swapped = !swapped
+	if !swapped:
+		if !terra_sprite_3d.visible:
+			terra_sprite_3d.show()
+		if mars_sprite_3d.visible:
+			mars_sprite_3d.hide()
+	else:
+		if terra_sprite_3d.visible:
+			terra_sprite_3d.hide()
+		if !mars_sprite_3d.visible:
+			mars_sprite_3d.show()
