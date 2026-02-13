@@ -58,7 +58,7 @@ func process_camera():
 		camera_3d.position = camera_3d.position.lerp(cam_target,0.1)
 
 func process_swapping():
-	if Input.is_action_just_pressed("in_swap"):
+	if Input.is_action_just_pressed("in_swap") and is_on_floor():
 		swapped = !swapped
 	if !swapped:
 		if !terra_sprite_3d.visible:

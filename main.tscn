@@ -52,3 +52,4 @@ shape = SubResource("ConcavePolygonShape3D_ig7tw")
 
 [node name="Player" parent="." unique_id=2045977923 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, -13.603105, 1.0000019, 1.9073486e-06)
+can_progress = false

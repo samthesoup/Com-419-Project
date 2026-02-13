@@ -86,7 +86,7 @@ cast_shadow = 3
 mesh = SubResource("CapsuleMesh_1bvp3")
 
 [node name="TerraSprite3D" type="AnimatedSprite3D" parent="." unique_id=2066567958]
-transform = Transform3D(1, 0, 0, 0, 0.9965319, 0.08320822, 0, -0.08320822, 0.9965319, 0, 0.05484394, -1.2508933e-08)
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 5.3290705e-15, 0, -5.3290705e-15, 0.99999976, 0, 0.054843944, -1.2508933e-08)
 pixel_size = 0.0201935
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_1jxqw")
@@ -95,7 +95,7 @@ autoplay = "idle"
 frame_progress = 0.04065981
 
 [node name="MarsSprite3D" type="AnimatedSprite3D" parent="." unique_id=1297536300]
-transform = Transform3D(1, 0, 0, 0, 0.9965319, 0.08320822, 0, -0.08320822, 0.9965319, 0, 0.05484394, -1.2508933e-08)
+transform = Transform3D(1, 0, 0, 0, 0.9999997, 7.1054274e-15, 0, -7.1054274e-15, 0.9999997, 0, -0.020649277, -1.02590585e-08)
 pixel_size = 0.0201935
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_dw050")
