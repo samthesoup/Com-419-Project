@@ -13,6 +13,7 @@ const JUMP_VELOCITY = 4.5
 
 enum player_state{
 	idle,
+	moving,
 	jump,
 	attack,
 	special
@@ -72,7 +73,7 @@ func process_camera():
 		camera_3d.position = camera_3d.position.lerp(cam_target,0.1)
 
 func process_swapping():
-	if Input.is_action_just_pressed("in_swap") and is_on_floor():
+	if Input.is_action_just_pressed("in_swap") and (state == player_state.moving or state == player_state.idle):
 		swapped = !swapped
 	if !swapped:
 		if state == player_state.idle:
