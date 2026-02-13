@@ -41,6 +41,7 @@ in_special={
 [layer_names]
 
 3d_physics/layer_1="Solid"
+3d_physics/layer_2="Player"
 
 [physics]
 

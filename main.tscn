@@ -45,6 +45,9 @@ data = PackedVector3Array(5.335, 0, 7.5699997, -5.335, 0, 7.5699997, 5.335, 0, -
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 size = Vector3(17.07, 1, 34.495)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(1, 8.837036, 23.935)
+
 [node name="Main" type="Node3D" unique_id=1255020925]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1201533964]
@@ -65,7 +68,9 @@ shape = SubResource("ConcavePolygonShape3D_ig7tw")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1000664782]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, -13.603105, 1.0000019, 1.9073486e-06)
+collision_layer = 3
 script = ExtResource("1_ig7tw")
+can_progress = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1742752654]
 shape = SubResource("CapsuleShape3D_h2yge")
@@ -108,3 +113,13 @@ transform = Transform3D(0, -4.3711395e-08, -0.99999994, -0.7540903, -0.6567701, 
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/BWall" unique_id=982227037]
 shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="ProgressTrigger" type="Area3D" parent="Player/Camera3D" unique_id=2025209597]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Camera3D/ProgressTrigger" unique_id=1981099834]
+transform = Transform3D(1, 0, 0, 0, 0.7615378, -0.6481198, 0, 0.6481198, 0.7615378, 9.081261, 4.858189, -34.538692)
+shape = SubResource("BoxShape3D_h2yge")
+
+[connection signal="body_entered" from="Player/Camera3D/ProgressTrigger" to="Player" method="_on_progress_trigger_body_entered"]

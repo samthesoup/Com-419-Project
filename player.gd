@@ -1,14 +1,21 @@
 extends CharacterBody3D
 
 @onready var prog_wall: StaticBody3D = $Camera3D/ProgWall
+@onready var camera_3d: Camera3D = $Camera3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var can_progress = false
 
+var cam_target : Vector3
+
+func _ready() -> void:
+	cam_target = camera_3d.position
+
 func _physics_process(delta: float) -> void:
 	process_movement(delta)
+	process_camera()
 	check_progress_wall()
 	move_and_slide()
 
@@ -37,3 +44,12 @@ func check_progress_wall():
 		prog_wall.set_collision_layer_value(1, false)
 	if !can_progress and prog_wall.get_collision_layer_value(1) == false:
 		prog_wall.set_collision_layer_value(1, true)
+
+func _on_progress_trigger_body_entered(body: Node3D) -> void:
+	cam_target.x += 8.495*2
+	print("progress")
+
+func process_camera():
+	if camera_3d.position != cam_target:
+		camera_3d.position = camera_3d.position.lerp(cam_target,0.1)
+	
