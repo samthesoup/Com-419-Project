@@ -1,13 +1,49 @@
 [gd_scene format=3 uid="uid://crvdco1pyowh7"]
 
 [ext_resource type="Script" uid="uid://cg315sqrkbj4h" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://cyrtfjq7up44n" path="res://icon.svg" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://tuop50yd6y07" path="res://Graphics/Earth_Brawler_spr.png" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2yge"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1bvp3"]
 radial_segments = 8
 rings = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(208, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(312, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(416, 0, 104, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(520, 0, 104, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0xm2m"]
 data = PackedVector3Array(5.335, 0, 7.5699997, -5.335, 0, 7.5699997, 5.335, 0, -7.5699997, -5.335, 0, 7.5699997, -5.335, 0, -7.5699997, 5.335, 0, -7.5699997)
@@ -33,9 +69,14 @@ layers = 2
 cast_shadow = 3
 mesh = SubResource("CapsuleMesh_1bvp3")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=307544169]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36488628, 0)
-texture = ExtResource("2_i3pqv")
+[node name="Sprite3D" type="AnimatedSprite3D" parent="." unique_id=2066567958]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 5.3290705e-15, 0, -5.3290705e-15, 0.99999976, 0, 0.054843944, -1.2508933e-08)
+pixel_size = 0.0201935
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_1jxqw")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.04065981
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1971459131]
 transform = Transform3D(1, 0, 0, 0, 0.7540909, 0.6567701, 0, -0.6567701, 0.7540909, -13.603105, 23.278769, 26.112207)

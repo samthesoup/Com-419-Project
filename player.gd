@@ -9,6 +9,7 @@ const JUMP_VELOCITY = 4.5
 @export var can_progress = false
 
 var cam_target : Vector3
+var swapped = false
 
 func _ready() -> void:
 	cam_target = camera_3d.position
@@ -52,4 +53,7 @@ func _on_progress_trigger_body_entered(body: Node3D) -> void:
 func process_camera():
 	if camera_3d.position != cam_target:
 		camera_3d.position = camera_3d.position.lerp(cam_target,0.1)
-	
+
+func process_swapping():
+	if Input.is_action_just_pressed("in_swap"):
+		swapped = !swapped
