@@ -1,4 +1,27 @@
 [gd_scene format=3 uid="uid://c27gmi8psvjw8"]
 
+[sub_resource type="GDScript" id="GDScript_mqdr1"]
+script/source = "extends Label3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	position.y += 4*delta
+	modulate.a -= 0.05
+	outline_modulate.a -= 0.05
+	
+	if modulate.a <= 0.0:
+		queue_free()
+"
+
 [node name="DamageCounter" type="Label3D" unique_id=1998725328]
+pixel_size = 0.008
+billboard = 1
+double_sided = false
 text = "Meow"
+script = SubResource("GDScript_mqdr1")

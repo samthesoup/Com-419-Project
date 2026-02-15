@@ -5,8 +5,8 @@ extends CharacterBody3D
 @onready var terra_sprite_3d: AnimatedSprite3D = $TerraSprite3D
 @onready var mars_sprite_3d: AnimatedSprite3D = $MarsSprite3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var attack_timer: Timer = $AttackTimer
 
+const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -26,6 +26,7 @@ var pre_state = state
 
 var cam_target : Vector3
 var swapped = false
+var damage = 10
 
 func _ready() -> void:
 	cam_target = camera_3d.position
@@ -87,11 +88,19 @@ func process_attacking():
 		if state != player_state.attack:
 			pre_state = state
 			state = player_state.attack
-			attack_timer.start(0.5)
 	if !swapped:
 		if state == player_state.attack:
 			animation_player.play("Terra Attack")
 	
 
-func _on_attack_timer_timeout() -> void:
-	state = pre_state
+func _on_hurtbox_body_entered(body: Node3D) -> void:
+	var dc = DAMAGE_COUNTER.instantiate()
+	dc.position = body.position
+	dc.position.y += 0.5
+	dc.text = str(damage)
+	get_tree().root.add_child(dc)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Terra Attack":
+		state = pre_state
