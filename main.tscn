@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://chil6ypljk1lh"]
 
 [ext_resource type="PackedScene" uid="uid://crvdco1pyowh7" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cbbdtm2bx4i0u" path="res://small_enemy.tscn" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -52,3 +53,6 @@ shape = SubResource("ConcavePolygonShape3D_ig7tw")
 
 [node name="Player" parent="." unique_id=2045977923 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, -13.603105, 1.0000019, 1.9073486e-06)
+
+[node name="SmallEnemy" parent="." unique_id=2098502144 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.899109, 0.50000024, 0.24201393)
