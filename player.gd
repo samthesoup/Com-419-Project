@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var terra_sprite_3d: AnimatedSprite3D = $TerraSprite3D
 @onready var mars_sprite_3d: AnimatedSprite3D = $MarsSprite3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hp_bar: ColorRect = $HUD/HPBar
 
 const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 
@@ -22,6 +23,8 @@ enum player_state{
 var state = player_state.idle
 var pre_state = state
 
+var hp = 100.0
+
 @export var can_progress = false
 
 var cam_target : Vector3
@@ -37,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	process_attacking()
 	process_swapping()
 	check_progress_wall()
+	update_hud()
 	move_and_slide()
 
 func process_movement(delta):
@@ -91,7 +95,10 @@ func process_attacking():
 	if !swapped:
 		if state == player_state.attack:
 			animation_player.play("Terra Attack")
-	
+
+func update_hud():
+	hp_bar.size.x = hp / 100.0 * 832.0
+	if hp_bar.size.x <= 0 : hp_bar.size.x = 0
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
 	var dc = DAMAGE_COUNTER.instantiate()
