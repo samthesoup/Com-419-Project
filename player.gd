@@ -24,7 +24,7 @@ var state = player_state.idle
 var pre_state = state
 
 var hp = 100.0
-var iframes = 100
+var iframes = 0
 
 @export var can_progress = false
 
@@ -36,6 +36,8 @@ func _ready() -> void:
 	cam_target = camera_3d.position
 
 func _physics_process(delta: float) -> void:
+	if iframes > 0 :
+		iframes -= 1
 	process_movement(delta)
 	process_camera()
 	process_attacking()
@@ -118,8 +120,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		state = pre_state
 
 func p_damage(amnt):
-	if iframes > 0 :
-		iframes -= 1
 	if iframes <= 0:
 		hp -= amnt
 		iframes = 100

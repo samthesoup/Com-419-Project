@@ -15,3 +15,7 @@ func _process(delta: float) -> void:
 	if !floor_ray.is_colliding():
 		mo.y = -1*delta
 	move_and_collide(mo)
+
+
+func _on_hurtbox_body_entered(body: Node3D) -> void:
+	body.p_damage(10)
