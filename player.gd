@@ -102,6 +102,9 @@ func process_attacking():
 	if !swapped:
 		if state == player_state.attack:
 			animation_player.play("Terra Attack")
+	else:
+		if state == player_state.attack:
+			animation_player.play("Mars_Attack")
 
 func update_hud():
 	hp_bar.size.x = hp / 100.0 * 832.0
@@ -117,6 +120,8 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Terra Attack":
+		state = pre_state
+	if anim_name == "Mars_Attack":
 		state = pre_state
 
 func p_damage(amnt):
