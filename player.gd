@@ -9,7 +9,7 @@ extends CharacterBody3D
 
 const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 
-const SPEED = 5.0
+const SPEED = 3.5
 const JUMP_VELOCITY = 4.5
 
 enum player_state{
@@ -51,7 +51,11 @@ func process_movement(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if input_dir.x < 0:
+		rotation.y = deg_to_rad(180)
+	if input_dir.x > 0:
+		rotation.y = deg_to_rad(0)
+	var direction := (Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		if !is_on_floor():
 			velocity.x = move_toward(velocity.x, direction.x*SPEED, SPEED*0.1)

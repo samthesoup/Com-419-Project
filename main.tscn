@@ -47,12 +47,15 @@ mesh = SubResource("PlaneMesh_7dm0k")
 surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Test Stage" unique_id=1212812587]
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Test Stage/StaticBody3D" unique_id=2102389521]
 shape = SubResource("ConcavePolygonShape3D_ig7tw")
 
 [node name="Player" parent="." unique_id=2045977923 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, -13.603105, 1.0000019, 1.9073486e-06)
+can_progress = false
 
-[node name="SmallEnemy" parent="." unique_id=2098502144 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.899109, 0.50000024, 0.24201393)
+[node name="SmallEnemy" parent="." unique_id=2098502144 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 0)
+target = NodePath("../Player")

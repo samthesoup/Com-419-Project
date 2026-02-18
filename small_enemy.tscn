@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://cbbdtm2bx4i0u"]
 
-[ext_resource type="Script" uid="uid://dc5mg6hd7m3b5" path="res://enemy.gd" id="1_35gl2"]
+[ext_resource type="Script" uid="uid://c4jqj0o4xwvsx" path="res://small_enemy.gd" id="1_35gl2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_33ipd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu40o"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_n8qhk"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_35gl2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_35gl2"]
 
 [node name="SmallEnemy" type="StaticBody3D" unique_id=2098502144]
-collision_layer = 5
-collision_mask = 2
+collision_layer = 4
 script = ExtResource("1_35gl2")
 metadata/_custom_type_script = "uid://dc5mg6hd7m3b5"
 
@@ -21,4 +21,12 @@ mesh = SubResource("BoxMesh_33ipd")
 surface_material_override/0 = SubResource("StandardMaterial3D_lu40o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=511687633]
-shape = SubResource("ConcavePolygonShape3D_n8qhk")
+shape = SubResource("BoxShape3D_35gl2")
+
+[node name="Floor Ray" type="RayCast3D" parent="." unique_id=1482070926]
+target_position = Vector3(0, -0.515, 0)
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1502081839]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hurtbox" unique_id=246512501]
+shape = SubResource("SphereShape3D_35gl2")
