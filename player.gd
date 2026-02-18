@@ -116,6 +116,7 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 	dc.position.y += 0.5
 	dc.text = str(damage)
 	get_tree().root.add_child(dc)
+	body.health -= damage
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

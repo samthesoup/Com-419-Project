@@ -19,7 +19,10 @@ func _physics_process(delta: float) -> void:
 	if !floor_ray.is_colliding():
 		mo.y = -3*delta
 	move_and_collide(mo)
+	
+	if health <= 0:
+		queue_free()
 
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
-	body.p_damage(10)
+	body.p_damage(damage)
