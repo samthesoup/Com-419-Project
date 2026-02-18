@@ -24,6 +24,7 @@ var state = player_state.idle
 var pre_state = state
 
 var hp = 100.0
+var iframes = 100
 
 @export var can_progress = false
 
@@ -115,3 +116,10 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Terra Attack":
 		state = pre_state
+
+func p_damage(amnt):
+	if iframes > 0 :
+		iframes -= 1
+	if iframes <= 0:
+		hp -= amnt
+		iframes = 100
