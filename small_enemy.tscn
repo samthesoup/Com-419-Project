@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbbdtm2bx4i0u"]
 
 [ext_resource type="Script" uid="uid://c4jqj0o4xwvsx" path="res://small_enemy.gd" id="1_35gl2"]
+[ext_resource type="Texture2D" uid="uid://5qiew5mfyqd4" path="res://Graphics/SEnemy_Forest_spr.png" id="2_33ipd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_33ipd"]
 
@@ -19,6 +20,7 @@ damage = 10
 metadata/_custom_type_script = "uid://dc5mg6hd7m3b5"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=690891464]
+visible = false
 mesh = SubResource("BoxMesh_33ipd")
 surface_material_override/0 = SubResource("StandardMaterial3D_lu40o")
 
@@ -34,5 +36,12 @@ collision_mask = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hurtbox" unique_id=246512501]
 shape = SubResource("SphereShape3D_35gl2")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=579487346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08283484, 0.24731758, 0)
+pixel_size = 0.0311935
+texture_filter = 2
+texture = ExtResource("2_33ipd")
+hframes = 16
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
