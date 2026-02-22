@@ -4,6 +4,7 @@ extends Enemy
 @onready var floor_ray: RayCast3D = $"Floor Ray"
 
 var approach_dist = 0.82
+var knockback : Vector3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +18,12 @@ func _physics_process(delta: float) -> void:
 	if position.distance_to(target.position) <= approach_dist:
 		mo = Vector3(0,0,0)
 	if !floor_ray.is_colliding():
-		mo.y = -3*delta
+		mo.y += -1*delta
+	
+	if knockback != Vector3.ZERO:
+		mo += knockback*delta
+		knockback = Vector3.ZERO
+	
 	move_and_collide(mo)
 	
 	if health <= 0:

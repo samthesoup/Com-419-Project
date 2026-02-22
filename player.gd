@@ -109,6 +109,7 @@ func process_attacking():
 func update_hud():
 	hp_bar.size.x = hp / 100.0 * 832.0
 	if hp_bar.size.x <= 0 : hp_bar.size.x = 0
+	if hp_bar.size.x > 832.0 : hp_bar.size.x = 832.0
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
 	var dc = DAMAGE_COUNTER.instantiate()
@@ -117,6 +118,7 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 	dc.text = str(damage)
 	get_tree().root.add_child(dc)
 	body.health -= damage
+	body.knockback = Vector3(50,20,0)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
