@@ -14,6 +14,7 @@ albedo_color = Color(1, 0, 0, 1)
 
 [node name="SmallEnemy" type="StaticBody3D" unique_id=2098502144 groups=["Enemies"]]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_35gl2")
 health = 50
 damage = 10

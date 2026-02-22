@@ -31,6 +31,7 @@ var iframes = 0
 var cam_target : Vector3
 var swapped = false
 var damage = 10
+var hurt_array = []
 
 func _ready() -> void:
 	cam_target = camera_3d.position
@@ -112,20 +113,25 @@ func update_hud():
 	if hp_bar.size.x > 832.0 : hp_bar.size.x = 832.0
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
-	var dc = DAMAGE_COUNTER.instantiate()
-	dc.position = body.position
-	dc.position.y += 0.5
-	dc.text = str(damage)
-	get_tree().root.add_child(dc)
-	body.health -= damage
-	body.knockback = Vector3(50,20,0)
+	if hurt_array.find(body) == -1:
+		var dc = DAMAGE_COUNTER.instantiate()
+		dc.position = body.position
+		dc.position.y += 0.5
+		dc.text = str(damage)
+		get_tree().root.add_child(dc)
+		body.health -= damage
+		var dir = sign(body.global_position.x - global_position.x)
+		body.knockback = Vector3(dir*50,20,0)
+	hurt_array.append(body)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Terra Attack":
 		state = pre_state
+		hurt_array.clear()
 	if anim_name == "Mars_Attack":
 		state = pre_state
+		hurt_array.clear()
 
 func p_damage(amnt):
 	if iframes <= 0:

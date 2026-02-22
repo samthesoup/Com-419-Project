@@ -61,3 +61,11 @@ can_progress = false
 [node name="SmallEnemy" parent="." unique_id=2098502144 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 0)
 target = NodePath("../Player")
+
+[node name="SmallEnemy2" parent="." unique_id=1717956341 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.855586, 1, 1.0848751)
+target = NodePath("../Player")
+
+[node name="SmallEnemy3" parent="." unique_id=504373278 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1653004, 1, -0.5312104)
+target = NodePath("../Player")

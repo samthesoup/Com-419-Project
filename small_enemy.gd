@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	if position.distance_to(target.position) <= approach_dist:
 		mo = Vector3(0,0,0)
 	if !floor_ray.is_colliding():
-		mo.y += -1*delta
+		mo.y += -2*delta
 	
 	if knockback != Vector3.ZERO:
 		mo += knockback*delta
