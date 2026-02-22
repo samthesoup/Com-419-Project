@@ -3,17 +3,20 @@
 [ext_resource type="Script" uid="uid://c4jqj0o4xwvsx" path="res://small_enemy.gd" id="1_35gl2"]
 [ext_resource type="Texture2D" uid="uid://5qiew5mfyqd4" path="res://Graphics/SEnemy_Forest_spr.png" id="2_33ipd"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_33ipd"]
+radial_segments = 8
+rings = 4
+
 [sub_resource type="BoxMesh" id="BoxMesh_33ipd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lu40o"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_35gl2"]
-radius = 0.3961293
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_33ipd"]
-
-[node name="SmallEnemy" type="StaticBody3D" unique_id=566166769 groups=["Enemies"]]
+[node name="SmallEnemy" type="SoftBody3D" unique_id=1772704524 groups=["Enemies"]]
+cast_shadow = 3
+mesh = SubResource("SphereMesh_33ipd")
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_35gl2")
@@ -42,8 +45,5 @@ pixel_size = 0.0311935
 texture_filter = 2
 texture = ExtResource("2_33ipd")
 hframes = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1983159782]
-shape = SubResource("BoxShape3D_33ipd")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
