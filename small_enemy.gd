@@ -4,18 +4,19 @@ extends Enemy
 @onready var floor_ray: RayCast3D = $"Floor Ray"
 @onready var hurtbox: Area3D = $Hurtbox
 
+var mo : Vector3
 var approach_dist = 0.82
 var knockback : Vector3
-
+var speed_mod : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	speed_mod = randf_range(0.5,1.3)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	var target_dir = position.direction_to(target.position)
-	var mo : Vector3 = Vector3(target_dir.x,0,target_dir.z)*delta
+	mo = Vector3(target_dir.x*speed_mod,0,target_dir.z*speed_mod)*delta
 	if position.distance_to(target.position) <= approach_dist:
 		mo = Vector3(0,0,0)
 	if !floor_ray.is_colliding():

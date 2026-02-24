@@ -15,7 +15,6 @@ radius = 0.3961293
 
 [node name="SmallEnemy" type="StaticBody3D" unique_id=566166769 groups=["Enemies"]]
 collision_layer = 4
-collision_mask = 4
 script = ExtResource("1_35gl2")
 health = 50
 damage = 10

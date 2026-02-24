@@ -73,7 +73,7 @@ func process_movement(delta):
 			velocity.x = direction.x*SPEED
 			velocity.z = direction.z*SPEED
 	else:
-		velocity.x 		= move_toward(velocity.x, 0, SPEED*0.1)
+		velocity.x = move_toward(velocity.x, 0, SPEED*0.1)
 		velocity.z = move_toward(velocity.z, 0, SPEED*0.1)
 
 func check_progress_wall():
