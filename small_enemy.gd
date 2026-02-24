@@ -2,6 +2,7 @@ extends Enemy
 
 @export var target : Node
 @onready var floor_ray: RayCast3D = $"Floor Ray"
+@onready var hurtbox: Area3D = $Hurtbox
 
 var approach_dist = 0.82
 var knockback : Vector3
@@ -26,9 +27,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_collide(mo)
 	
+	var p = hurtbox.get_overlapping_bodies()
+	if p.size() > 0:
+		p[0].p_damage(damage)
+	
 	if health <= 0:
 		queue_free()
-
-
-func _on_hurtbox_body_entered(body: Node3D) -> void:
-	body.p_damage(damage)
