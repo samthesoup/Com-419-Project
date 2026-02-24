@@ -6,6 +6,8 @@ extends CharacterBody3D
 @onready var mars_sprite_3d: AnimatedSprite3D = $MarsSprite3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hp_bar: ColorRect = $HUD/HPBar
+@onready var timer: Label = $HUD/Timer
+@onready var level_timer: Timer = $LevelTimer
 
 const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 
@@ -33,8 +35,11 @@ var swapped = false
 var damage = 10
 var hurt_array = []
 
+var level_time = 63
+
 func _ready() -> void:
 	cam_target = camera_3d.position
+	level_timer.start(level_time)
 
 func _physics_process(delta: float) -> void:
 	if iframes > 0 :
@@ -111,6 +116,12 @@ func update_hud():
 	hp_bar.size.x = hp / 100.0 * 832.0
 	if hp_bar.size.x <= 0 : hp_bar.size.x = 0
 	if hp_bar.size.x > 832.0 : hp_bar.size.x = 832.0
+	var min = int(level_timer.time_left / 60)
+	var sec = int(level_timer.time_left) % 60
+	if sec > 9:
+		timer.text = str(min)+":"+str(sec)
+	else:
+		timer.text = str(min)+":0"+str(sec)
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
 	if hurt_array.find(body) == -1:
