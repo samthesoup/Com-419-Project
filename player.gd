@@ -37,6 +37,8 @@ var hurt_array = []
 
 var level_time = 63
 
+var progress_zone = false
+
 func _ready() -> void:
 	cam_target = camera_3d.position
 	level_timer.start(level_time)
@@ -84,6 +86,7 @@ func check_progress_wall():
 
 func _on_progress_trigger_body_entered(_body: Node3D) -> void:
 	cam_target.x += 8.495*2
+	progress_zone = true
 	print("progress")
 
 func process_camera():
@@ -134,7 +137,6 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 		var dir = sign(body.global_position.x - global_position.x)
 		body.knockback = Vector3(dir*50,20,0)
 	hurt_array.append(body)
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Terra Attack":
