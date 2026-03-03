@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkulf2slyubho" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://crvdco1pyowh7" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cbbdtm2bx4i0u" path="res://small_enemy.tscn" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -142,5 +143,25 @@ can_progress = false
 
 [node name="Camera3D" parent="Player" index="4" unique_id=1971459131]
 transform = Transform3D(1, 0, 0, 0, 0.7540909, 0.6567701, 0, -0.6567701, 0.7540909, 0, 23.279, 26.112)
+
+[node name="SmallEnemy" parent="." unique_id=566166769 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2830043, 0.50132453, 3.096644)
+target = NodePath("../Player")
+
+[node name="SmallEnemy2" parent="." unique_id=1601096643 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3667016, 0.50132453, 4.197406)
+target = NodePath("../Player")
+
+[node name="SmallEnemy3" parent="." unique_id=485981877 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4944283, 0.50132453, 2.8179674)
+target = NodePath("../Player")
+
+[node name="SmallEnemy4" parent="." unique_id=274565060 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0074983, 0.50132453, 4.0702124)
+target = NodePath("../Player")
+
+[node name="SmallEnemy5" parent="." unique_id=2042234107 node_paths=PackedStringArray("target") instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5383053, 0.50132453, 2.787836)
+target = NodePath("../Player")
 
 [editable path="Player"]
