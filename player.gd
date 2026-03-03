@@ -12,7 +12,7 @@ extends CharacterBody3D
 const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 
 const SPEED = 3.5
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 6.5
 
 enum player_state{
 	idle,

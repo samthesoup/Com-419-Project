@@ -559,12 +559,14 @@ fov = 18.4
 transform = Transform3D(-4.3711378e-08, -1, 0, 0.7535632, -3.29393e-08, -0.6573751, 0.6573751, -2.8734785e-08, 0.7535632, 8.495, -0.405, -34.98)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/ProgWall" unique_id=1730603962]
+transform = Transform3D(2.08, 0, 0, 0, 2.08, 0, 0, 0, 2.08, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_0xm2m")
 
 [node name="LWall" type="StaticBody3D" parent="Camera3D" unique_id=588853172]
 transform = Transform3D(-4.371139e-08, 1, 0, -0.7540907, -3.296235e-08, -0.65677, -0.65677, -2.8708328e-08, 0.7540907, -8.494895, -0.4045887, -34.979774)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/LWall" unique_id=1889649371]
+transform = Transform3D(2.26, 0, 0, 0, 2.26, 0, 0, 0, 2.26, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_0xm2m")
 
 [node name="TWall" type="StaticBody3D" parent="Camera3D" unique_id=9686076]
