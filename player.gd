@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 @onready var prog_wall: StaticBody3D = $Camera3D/ProgWall
 @onready var camera_3d: Camera3D = $Camera3D
-@onready var terra_sprite_3d: AnimatedSprite3D = $TerraSprite3D
-@onready var mars_sprite_3d: AnimatedSprite3D = $MarsSprite3D
+@onready var terra_sprite_3d: Sprite3D = $TerraSprite3D
+@onready var mars_sprite_3d: Sprite3D = $MarsSprite3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hp_bar: ColorRect = $HUD/HPBar
 @onready var timer: Label = $HUD/Timer
@@ -98,22 +98,39 @@ func process_swapping():
 		swapped = !swapped
 	if !swapped:
 		if state == player_state.idle:
-			animation_player.play("Terra Idle")
+			if is_on_floor():
+				animation_player.play("Terra Idle")
+			else:
+				if animation_player.current_animation != "Terra Jump" and animation_player.current_animation != "":
+					animation_player.play("Terra Jump")
 	else:
 		if state == player_state.idle:
-			animation_player.play("Mars Idle")
+			if is_on_floor():
+				animation_player.play("Mars Idle")
+			else:
+				animation_player.play("Mars Jump")
 
 func process_attacking():
-	if Input.is_action_just_pressed("in_attack"):
-		if state != player_state.attack:
-			pre_state = state
-			state = player_state.attack
+	if state == player_state.idle:
+		if Input.is_action_just_pressed("in_attack"):
+			if state != player_state.attack:
+				pre_state = state
+				state = player_state.attack
+		if Input.is_action_just_pressed("in_special"):
+			if state != player_state.special:
+				pre_state = state
+				state = player_state.special
 	if !swapped:
 		if state == player_state.attack:
 			animation_player.play("Terra Attack")
+		if state == player_state.special:
+			animation_player.play("Terra Special")
 	else:
 		if state == player_state.attack:
 			animation_player.play("Mars_Attack")
+		if state == player_state.special:
+			animation_player.play("Mars Special")
+	
 
 func update_hud():
 	hp_bar.size.x = hp / 100.0 * 832.0
@@ -143,6 +160,12 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		state = pre_state
 		hurt_array.clear()
 	if anim_name == "Mars_Attack":
+		state = pre_state
+		hurt_array.clear()
+	if anim_name == "Terra Special":
+		state = pre_state
+		hurt_array.clear()
+	if anim_name == "Mars Special":
 		state = pre_state
 		hurt_array.clear()
 
