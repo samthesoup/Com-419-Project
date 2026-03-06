@@ -11,6 +11,7 @@ extends CharacterBody3D
 @onready var db_mana: Label = $HUD/DBMana
 
 const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
+const MANA_GEM = preload("uid://d23istjoylmpw")
 
 const SPEED = 3.5
 const JUMP_VELOCITY = 6.5
@@ -148,6 +149,8 @@ func update_hud():
 		timer.text = str(min)+":"+str(sec)
 	else:
 		timer.text = str(min)+":0"+str(sec)
+	if mana > 8:
+		mana = 8
 	db_mana.text = str(mana)
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
@@ -164,6 +167,11 @@ func _on_hurtbox_body_entered(body: Node3D) -> void:
 		body.health -= damage
 		var dir = sign(body.global_position.x - global_position.x)
 		body.knockback = Vector3(dir*50,20,0)
+		var r = randi_range(0,20)
+		if r > 18:
+			var m = MANA_GEM.instantiate()
+			m.position = body.position
+			get_tree().root.add_child(m)
 	hurt_array.append(body)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

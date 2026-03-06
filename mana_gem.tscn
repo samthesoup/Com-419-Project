@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d23istjoylmpw"]
+
+[ext_resource type="Texture2D" uid="uid://bgevybpcguos3" path="res://Graphics/Mana_Gem.png" id="1_kgf3v"]
+[ext_resource type="Script" uid="uid://bvbj4unm3mlr2" path="res://mana_gem.gd" id="1_o8hmr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kgf3v"]
+radius = 0.20739892
+
+[node name="Mana Gem" type="Node3D" unique_id=348103305]
+script = ExtResource("1_o8hmr")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=174358969]
+texture_filter = 0
+texture = ExtResource("1_kgf3v")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=320650750]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=222616078]
+shape = SubResource("SphereShape3D_kgf3v")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
