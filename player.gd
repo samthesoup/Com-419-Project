@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var hp_bar: ColorRect = $HUD/HPBar
 @onready var timer: Label = $HUD/Timer
 @onready var level_timer: Timer = $LevelTimer
+@onready var db_mana: Label = $HUD/DBMana
 
 const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 
@@ -29,6 +30,7 @@ var state = player_state.idle
 var pre_state = state
 
 var hp = 100.0
+var mana = 8
 var iframes = 0
 
 @export var can_progress = false
@@ -119,10 +121,11 @@ func process_attacking():
 			if state != player_state.attack:
 				pre_state = state
 				state = player_state.attack
-		if Input.is_action_just_pressed("in_special"):
+		if Input.is_action_just_pressed("in_special") and mana > 0:
 			if state != player_state.special:
 				pre_state = state
 				state = player_state.special
+				mana -= 1
 	if !swapped:
 		if state == player_state.attack:
 			animation_player.play("Terra Attack")
@@ -145,6 +148,7 @@ func update_hud():
 		timer.text = str(min)+":"+str(sec)
 	else:
 		timer.text = str(min)+":0"+str(sec)
+	db_mana.text = str(mana)
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
 	if hurt_array.find(body) == -1:

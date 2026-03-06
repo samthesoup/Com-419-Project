@@ -685,6 +685,10 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_i3pqv"]
 font_size = 73
 
+[sub_resource type="LabelSettings" id="LabelSettings_hqtel"]
+font_size = 73
+font_color = Color(0.21176471, 0.8, 1, 1)
+
 [node name="Player" type="CharacterBody3D" unique_id=2045977923]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, 0, 0, 0)
 collision_layer = 2
@@ -811,6 +815,14 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "0:00"
 label_settings = SubResource("LabelSettings_i3pqv")
+
+[node name="DBMana" type="Label" parent="HUD" unique_id=768004697]
+offset_left = 1502.0
+offset_top = 918.0
+offset_right = 1585.0
+offset_bottom = 1019.0
+text = "25"
+label_settings = SubResource("LabelSettings_hqtel")
 
 [node name="LevelTimer" type="Timer" parent="." unique_id=2035550071]
 
