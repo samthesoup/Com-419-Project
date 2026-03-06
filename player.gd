@@ -14,6 +14,9 @@ const DAMAGE_COUNTER = preload("uid://c27gmi8psvjw8")
 const SPEED = 3.5
 const JUMP_VELOCITY = 6.5
 
+const BASE_DAMAGE = 10
+const SPECIAL_DAMAGE = 15
+
 enum player_state{
 	idle,
 	moving,
@@ -145,6 +148,10 @@ func update_hud():
 
 func _on_hurtbox_body_entered(body: Node3D) -> void:
 	if hurt_array.find(body) == -1:
+		if state == player_state.attack:
+			damage = BASE_DAMAGE
+		elif state == player_state.special:
+			damage = SPECIAL_DAMAGE
 		var dc = DAMAGE_COUNTER.instantiate()
 		dc.position = body.position
 		dc.position.y += 0.5
