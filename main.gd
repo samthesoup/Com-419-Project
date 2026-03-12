@@ -22,11 +22,12 @@ func _process(delta: float) -> void:
 		player.progress_zone = false
 		
 	if progress_zone:
-		var g = groups[zone].instantiate()
-		for i in g.get_children():
-			i.position.x += player.cam_target.x
-			i.target = player
-		add_child(g)
+		if zone <= groups.size():
+			var g = groups[zone].instantiate()
+			for i in g.get_children():
+				i.position.x += player.cam_target.x
+				i.target = player
+			add_child(g)
 		progress_zone = false
 		
 	if get_tree().get_nodes_in_group("Enemies").size() <= 0:
